@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas画布宽高属性、样式宽高及拉伸效果</title>
+    <script>
+        
+        window.onload = function () {
+            let theCanvas = document.getElementById("canvas");
+            let context = theCanvas.getContext("2d");
+
+            //测试画布的宽高
+            console.log(context.canvas.width, context.canvas.height);  //200 200
+
+            //填充矩形
+            context.fillStyle = "green";
+            context.fillRect(0, 0, 100, 100);
+
+            //text
+            context.fillStyle = "red";
+            context.font = "20px Sans-Serif";   //先用font属性来定义字号、字体
+            context.textBaseline = "top";
+            context.fillText("Hello World!", 0, 100); //(文字，开始在画布上绘制的x、y坐标)
+
+            context.strokeStyle = "#000000";
+            context.lineWidth = 2;
+            context.strokeRect(0, 0, context.canvas.width, context.canvas.height);
+        }
+    </script>
+</head>
+
+<body>
+    <canvas id="canvas" width="200px" height="200px" style="width:300px;height:150px;border:1px#ccc solid"></canvas>
+    <!-- 当Canvas的元素样式与绘制的表面大小不一致时，产生拉伸现象 -->
+</body>
+
+</html>

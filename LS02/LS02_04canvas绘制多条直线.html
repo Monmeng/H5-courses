@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas绘图基础（直线和矩形的绘制）</title>
+    <script type="text/javascript">
+       window.onload = function () {
+            canvasApp();
+        }
+        
+        function canvasApp() {
+            var theCanvas = document.getElementById('canvas');
+            var context = theCanvas.getContext('2d');
+            drawLine(context);
+        }
+        function drawLine(ctx) {
+        
+            ctx.beginPath(); 
+            ctx.strokeStyle = 'blue';
+            ctx.lineWidth = 5;
+            ctx.moveTo(100,10);
+            ctx.lineTo(200,10);
+            ctx.lineTo(200,120);
+            ctx.closePath();
+            ctx.stroke();
+            //beginPath()是重置一条路径，不然都会以“上次beginPath”之后的所有路径为基础进行绘制
+            //closePath不是结束路径，而是关闭路径，它会试图从（MoveTo点之后）当前路径的终点连一条路径到起点，
+            //         让整个路径闭合起来。但是，这并不意味着它之后的路径就是新路径了。
+
+            ctx.beginPath(); 
+            ctx.strokeStyle = 'red';
+            ctx.lineWidth = 10;
+            ctx.moveTo(100,200);//
+            ctx.lineTo(200,200);
+            ctx.lineTo(200,300);
+            ctx.closePath();
+            ctx.stroke();
+            
+        }
+
+    </script>
+</head>
+<body>
+<div>
+    <canvas id="canvas" width="500" height="500" style="border:solid #ccc 2px">
+        Your browser does not support the HTML 5 Canvas.
+    </canvas>
+</div>
+</body>
+</html>

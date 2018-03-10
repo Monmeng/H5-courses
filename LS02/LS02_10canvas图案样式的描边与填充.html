@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas描边与填充（图案样式- 图片、Canvas画布等）</title>
+    <script type="text/javascript">
+       window.onload = function () {
+            canvasApp();
+        }
+        
+        function canvasApp() {
+            var canOne = document.getElementById('canOne');
+            var context = canOne.getContext('2d');
+            var canTwo = document.getElementById('canTwo');
+            var canTwoContext = canTwo.getContext('2d');
+            // canTwoContext.fillStyle='blue';
+            // canTwoContext.beginPath();
+            // canTwoContext.arc(25, 25, 10, 0, Math.PI *0.75, false);
+            // canTwoContext.fill();
+            // canTwoContext.closePath();
+            var img = new Image();
+            img.src = './images/fill.gif';
+            img.onload = function(){
+                var pattern = canTwoContext.createPattern(img,'repeat');
+                canTwoContext.fillStyle = pattern;
+                canTwoContext.fillRect(0,0,50,50);
+            }
+            canTwo.onclick=function(){
+                var fillPattern = context.createPattern(canTwo,'repeat');
+                context.fillStyle = fillPattern;
+                context.fillRect(0,0,500,300);
+            }            
+        }
+        
+    </script>
+</head>
+<body>
+<div>
+    <canvas id="canOne" width="500" height="300" style="border:2px #ccc solid">
+        Your browser does not support the HTML 5 Canvas.
+    </canvas>
+    <canvas id="canTwo" width="50" height="50" style="border:2px red solid">
+        Your browser does not support the HTML 5 Canvas.
+    </canvas>
+</div>
+</body>
+</html>

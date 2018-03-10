@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas文本</title>
+    <script type="text/javascript">
+        window.onload = function () {
+            canvasApp();
+        }
+
+        function canvasApp() {
+            var theCanvas = document.getElementById('canvas');
+            var context = theCanvas.getContext('2d');
+            context.font = "bold 80px Arial";
+            context.fillStyle = "red";
+            context.strokeStyle='yellow';
+            
+            context.fillText("hello", 100, 100);
+            context.fillText("hello", 100, 200, 100);   //允许的最大文本宽度，可选
+            context.strokeText("hello", 100, 100);
+            context.strokeText("hello", 100, 200, 100);
+        }
+
+    </script>
+</head>
+
+<body>
+    <div>
+        <canvas id="canvas" width="500" height="300" style="border:2px #ccc solid">
+            Your browser does not support the HTML 5 Canvas.
+        </canvas>
+    </div>
+</body>
+
+</html>

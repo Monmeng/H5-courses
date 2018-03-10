@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas 画布变换（旋转、平移、缩放）</title>
+    <script type="text/javascript">
+       window.onload = function () {
+            canvasApp();
+        }
+
+        function canvasApp() {
+            var theCanvas = document.getElementById('canvas');
+            var context = theCanvas.getContext('2d');
+            context.save();
+            //平移
+            context.fillStyle = "green";
+            context.fillRect(0, 0, 50, 50);
+            context.translate(50, 50);  
+            context.fillRect(0, 0, 50, 50);         
+            context.restore();
+
+            context.save();
+            //旋转
+            context.beginPath();
+            context.fillStyle = "red";
+            var angleInRadians = 10*Math.PI/180;
+            context.rotate(angleInRadians);           
+            context.fillRect(100, 100, 50, 50);
+            context.restore();
+
+            context.save();
+            //缩放
+            context.beginPath();
+            context.fillStyle = "yellow";
+            context.fillRect(150, 150, 50, 50);
+            context.scale(1.5,1);            
+            context.fillRect(150, 150, 50, 50);
+            context.restore();
+
+            //transform()方法可以级联
+            //a 水平缩放  1
+            // b 水平倾斜
+            // c 垂直倾斜
+            // d 垂直缩放  1
+            // e 水平位移
+            // f 垂直位移
+            context.save();
+
+            context.fillStyle="yellow"
+            context.fillRect(250,250,200,100);
+
+            context.transform(1,0.5,-0.5,1,130,-100);
+            context.fillStyle="red"
+            context.fillRect(250,250,200,100);
+
+            context.transform(1,0.5,-0.5,1,130,-100);
+            context.fillStyle="blue"
+            context.fillRect(250,250,200,100);
+            context.restore();
+            // context.setTransform(1, 0, 0, 1, 0, 0);//忽略之前的级联变换，以标准矩阵为起始重新变换
+            context.save();
+            context.beginPath();
+            context.fillStyle="orange"
+            context.fillRect(300,400,200,100);
+            context.setTransform(1, 0.5, -0.5, 1, 0, 0);
+            context.fillStyle="red"
+            context.fillRect(300,400,200,100);
+            context.setTransform(1, -0.5, 0.5, 1, 0, 0);
+            context.fillStyle="green"
+            context.fillRect(300,400,200,100);
+            context.restore();
+        }
+
+    </script>
+</head>
+
+<body>
+    <canvas id="canvas" width="800" height="800" style="border:solid #ccc 2px">
+        Your browser does not support the HTML 5 Canvas.
+    </canvas>
+</body>
+
+</html>

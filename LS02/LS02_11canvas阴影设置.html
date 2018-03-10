@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas阴影设置</title>
+    <script type="text/javascript">
+        window.onload = function () {
+            canvasApp();
+        }
+        function canvasApp() {
+            var theCanvas = document.getElementById('canvas');
+            var context = theCanvas.getContext('2d');
+            context.fillStyle = 'pink';
+            context.shadowOffsetX = 14;
+            context.shadowOffsetY = 14;
+            context.shadowColor = 'black';
+            context.shadowBlur = 4;   //阴影模糊级数
+            context.fillRect(20, 10, 100, 100);
+
+            context.shadowOffsetX = 10;
+            context.shadowOffsetY = 10;
+            context.shadowColor = '#ccc';
+            context.shadowBlur = 8;
+            context.arc(200, 300, 100, 0, Math.PI * 2, false);
+            context.fill();
+        }
+
+    </script>
+</head>
+
+<body>
+    <div>
+        <canvas id="canvas" width="500" height="500">
+            Your browser does not support the HTML 5 Canvas.
+        </canvas>
+    </div>
+</body>
+
+</html>

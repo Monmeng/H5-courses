@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas状态存储与恢复 </title>
+    <script type="text/javascript">
+        window.onload = function () {
+            canvasApp();
+        }
+
+        function canvasApp() {
+            var theCanvas = document.getElementById('canvas');
+            var context = theCanvas.getContext('2d');
+
+            //每个状态随时存储Canvas上下文数据（画布当前属性、变换矩阵信息、剪贴区域）
+            //当前属性包括（描边颜色、填充颜色、全局透明度、线宽、字体等等）
+            //状态的存储与恢复对于坐标变换尤其重要，参见后续坐标变换部分
+            context.fillStyle = "red";
+            context.save();
+            context.fillStyle = "blue";
+            context.fillRect(0, 0, 100, 100);
+            context.save();
+            context.fillStyle = "green";
+            context.fillRect(100, 100, 100, 100);
+            context.restore();//思考：若屏蔽此行，效果如何？蓝绿蓝
+            context.restore();
+            context.fillRect(200,200,100,100);
+        }
+    </script>
+</head>
+
+<body>
+    <div>
+        <canvas id="canvas" width="500" height="500" style="border:solid #ccc 2px">
+            Your browser does not support the HTML 5 Canvas.
+        </canvas>
+    </div>
+</body>
+
+</html>
