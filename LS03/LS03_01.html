@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas 绘制图像</title>
+    <script type="text/javascript">
+        window.onload = function () {
+            canvasAppOne();
+            canvasAppTwo();//以canvasOne为内容绘制在canvasTwo中
+        }
+
+        function canvasAppOne() {
+            var theCanvas = document.getElementById('canvasOne');
+            var context = theCanvas.getContext('2d');
+
+            var img = new Image();
+            img.src = "./images/sample.JPG";
+            img.onload = function eventShipLoaded() {
+                context.drawImage(img, 0, 0);
+                drawBorder(context,0, 0, 340, 220,"red");
+
+                context.drawImage(img, 0, 32, 68, 68);
+                // drawBorder(context,0, 32, 68, 68,"red");
+
+                context.drawImage(img, 50,50, 100, 100, 100, 100, 100, 100);
+                // drawBorder(context,100, 100, 100, 100,"red");
+            }
+        }
+        function canvasAppTwo() {
+            document.getElementById('canvasTwo').onclick = function () {
+                var theCanvas = document.getElementById('canvasTwo');
+                var context = theCanvas.getContext('2d');
+                var canvasOne = document.getElementById('canvasOne');
+                
+                context.drawImage(canvasOne, 0, 32, 100, 100, 50, 50, 100, 100);
+                drawBorder(context,50, 50, 100, 100,"blue");
+            }
+        }
+        function drawBorder(ctx,x, y, w, h,color) {    //图像描边
+            ctx.save();
+            ctx.strokeStyle = color;
+            ctx.lineWidth = 2;
+            ctx.strokeRect(x, y, w, h);
+            ctx.restore();
+        }
+    </script>
+</head>
+
+<body>
+
+    <div>
+        <canvas id="canvasOne" width="500" height="300" style="border:solid 1px #ccc">
+            Your browser does not support the HTML 5 Canvas.
+        </canvas>
+        <canvas id="canvasTwo" width="200" height="200" style="border:solid 1px #ccc">
+            Your browser does not support the HTML 5 Canvas.
+        </canvas>
+    </div>
+</body>
+
+</html>
